@@ -85,6 +85,20 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Give a coin to your Witcher',
+    date: 'Jan 20th, 2020',
+    firstParagraph: 'I Hate Portals. Youre something more, Ciri. Somthing more. I Hate Portals. I Hate Portals. I Hate Portals. I Hate Portals. I Hate Portals. I Hate Portals. But that sword is for monsters. I Hate Portals.',
+    secondParagraph: 'Youre something more, Ciri. Somthing more. I Hate Portals. I Hate Portals. Be kind to Dopplers...and also to fish. I Hate Portals. I Hate Portals. I Hate Portals. I Hate Portals. But that sword is for monsters. I Hate Portals.',
+    thirdParagraph: 'I Hate Portals. But that sword is for monsters. But I want to be called Cirilla of Vengerberg, daughter of Yennefer. I Hate Portals. I Hate Portals. Let me put it this way: wham-wham mans again, Ill swish-a-swash-a-swunk you. Mmm...Thanks bunches. I Hate Portals. I Hate Portals. I Hate Portals.'
+  },
+  {
+    title: 'The Upside Down',
+    date: 'Jan 20th, 2020',
+    firstParagraph: 'Joyce ad Jim The Vanishing Of Will Byers The Bathtub. Nancy eligendi Steve deserunt Joyce nec Karen ei, efficiendi percipitur Mike cetero Buckley Max platonem Mazim Newby mei enim Martin no. facilisis, Will Owens te Robin Has adipisci The Weirdo on Maple Street. Mayfield repudiare The Lost Sister vituperata. The Pollywog, The Flea and the Acrobat, The Upside Down Jonathan mei Erica Ex soleat omnium Sinclair consulatu possim Hargrove habemus Lucas The Case of the Missing Life Guard. at duo Natum Bob quas Harrington Dustin Sam Eleven Billy The Mail Rats. Do you Copy The Mind Flayer?',
+    secondParagraph: 'Mike ad ipsum The Flea and the Acrobat, The Upside Down Jonathan mei Erica Ex soleat omnium Sinclair consulatu possim Hargrove habemus Lucas The Case of the Missing Life Guard. at duo Natum Bob quas,  adipisci The Weirdo on Maple Street.  Trick or Treat, Freak, The Weirdo on Maple Street. Mayfield repudiare The Lost Sister vituperata. The Pollywog, The Flea and the Acrobat, The Upside Down Jonathan mei Erica Ex soleat omnium Sinclair consulatu possim Hargrove habemus.',
+    thirdParagraph: 'Trick or Treat, Freak, The Weirdo on Maple Street. Mayfield repudiare The Lost Sister vituperata. The Pollywog, The Flea and the Acrobat, The Upside Down Jonathan mei Erica Ex soleat omnium Will Owens te Robin Has adipisci The Weirdo, Jim ad  The Vanishing Of Will . The Lost Sister vituperata. The Pollywog, The Flea and the Acrobat, Mayfield repudiare The Lost Sister vituperata. The Pollywog, The Flea and the Acrobat, The Upside Down Jonathan mei Erica Ex soleat omnium Sinclair consulatu possim Hargrove habemus.'
   }
 ];
 
@@ -112,3 +126,44 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const createNewsfeed = (title, date, firstParagraph, secondParagraph, thirdParagraph) => {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleContent1 = document.createElement('p');
+  const articleContent2 = document.createElement('p');
+  const articleContent3 = document.createElement('p');
+  const articleButton = document.createElement('span');
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleContent1);
+  article.appendChild(articleContent2);
+  article.appendChild(articleContent3);
+  article.appendChild(articleButton);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  articleButton.classList.add('expandButton');
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleContent1.textContent = firstParagraph;
+  articleContent2.textContent = secondParagraph;
+  articleContent3.textContent = thirdParagraph;
+  articleButton.textContent = 'expand';
+
+  articleButton.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  });
+
+  return article;
+};
+
+const parentComponent = document.querySelector('.articles');
+
+data.forEach(item => {
+  const newArticle = createNewsfeed(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph);
+  parentComponent.appendChild(newArticle);
+});
