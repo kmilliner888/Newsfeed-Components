@@ -56,11 +56,8 @@ const createMenu = (array) => {
   
 }
 
-
-
-  const menu = createMenu(menuItems);
-  console.log(menu);
-  document.body.append(menu);
+const header = document.querySelector('.header');
+ header.append(createMenu(menuItems));
 
 
 
